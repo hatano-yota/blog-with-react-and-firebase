@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import "./styles/Navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -5,9 +6,14 @@ import {
   faHouse,
   faFilePen,
   faArrowRightToBracket,
+  faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const Navbar = () => {
+type Props = {
+  isAuth: boolean;
+};
+
+export const Navbar: FC<Props> = ({ isAuth }) => {
   return (
     <nav>
       <Link to={"/"}>
@@ -18,10 +24,17 @@ export const Navbar = () => {
         <FontAwesomeIcon icon={faFilePen} />
         記事投稿
       </Link>
-      <Link to={"/login"}>
-        <FontAwesomeIcon icon={faArrowRightToBracket} />
-        ログイン
-      </Link>
+      {!isAuth ? (
+        <Link to={"/login"}>
+          <FontAwesomeIcon icon={faArrowRightToBracket} />
+          ログイン
+        </Link>
+      ) : (
+        <Link to={"/logout"}>
+          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+          ログアウト
+        </Link>
+      )}
     </nav>
   );
 };
