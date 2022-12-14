@@ -43,6 +43,7 @@
     color: white;
     padding: 7px 15px;
     border-radius: 3px;
+    box-shadow: 2px 2px 7px -2px #777777;
     cursor: pointer;
     transition: all 0.3s;
 }
